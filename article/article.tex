@@ -35,6 +35,33 @@
 		\paragraph{}
 		[TODO]
 
+		\begin{align}
+			X &= \text{Tener Cancer de mama} 										&\rightarrow \{0,1\} \\
+			Y &= \text{Dar positivo al hacerse una mamografía} 	&\rightarrow \{0,1\} \\
+			Z &= \text{Ser una mujer de 40 años y someterse a examen rutinario}	&\rightarrow \{0,1\}
+		\end{align}
+
+		\begin{align}
+			Pr(Y = 1 | X = 1) = 0.800 \\
+			Pr(Y = 1 | X = 0) = 0.096 \\
+			Pr(X = 1 | Z = 1) = 0.010
+ 		\end{align}
+
+		\begin{align}
+			Pr(X = 1 | Z = 1, Y = 1) = Pr(X = 1) \cdot Pr(Y = 1 | X = 1) \cdot Pr(Z = 1 | X = 1)
+		\end{align}
+
+		\begin{align}
+			Pr(Y = 1 | X = 1) = 0.800 \\
+			Pr(Y = 1 | X = 0) = 0.096 \\
+			Pr(X = 1) = 0.010
+		\end{align}
+
+
+		\begin{align}
+			Pr(X = 1 | Y = 1) = Pr(X = 1) \cdot Pr(Y = 1 | X = 1) = 0.010 \cdot 0.800 = 0.008
+		\end{align}
+
 	\section{Dadas dos variables aleatorias discretas, $X$ e $Y$, y dada su distribución de probabilidad conjunta que aparece en la tabla, se pide:}
 	\label{sec:e2}
 
@@ -81,6 +108,72 @@
 		\begin{align}
 			x_1 = <sunny, cool, normal, false> \\
 			x_2 = <overcast, mild, high, true>
+		\end{align}
+
+		\begin{align}
+			Pr(play = yes) &= 9/14 \\
+			Pr(play = no) &= 5/14
+		\end{align}
+		\begin{align}
+			Pr(outlook = sunny 		| play = yes) &= 2/9 \\
+			Pr(outlook = overcast | play = yes) &= 2/9 \\
+			Pr(outlook = rainy 		| play = yes) &= 5/9 \\
+			Pr(outlook = sunny 		| play = no) &= 3/5 \\
+			Pr(outlook = overcast | play = no) &= 0/5 \\
+			Pr(outlook = rainy 		| play = no) &= 2/5
+		\end{align}
+
+		\begin{align}
+			Pr(temperature = hot 	| play = yes) &= 1/9 \\
+			Pr(temperature = mild | play = yes) &= 4/9 \\
+			Pr(temperature = cool | play = yes) &= 4/9 \\
+			Pr(temperature = hot 	| play = no) &= 2/5 \\
+			Pr(temperature = mild | play = no) &= 2/5 \\
+			Pr(temperature = cool | play = no) &= 1/5
+		\end{align}
+
+		\begin{align}
+			Pr(humidity = high 		| play = yes) &= 3/9 \\
+			Pr(humidity = normal 	| play = yes) &= 6/9 \\
+			Pr(humidity = high		| play = no) &= 4/5 \\
+			Pr(humidity = normal 	| play = no) &= 1/5
+		\end{align}
+
+		\begin{align}
+			Pr(windy = true 	| play = yes) &= 4/9 \\
+			Pr(windy = false 	| play = yes) &= 5/9 \\
+			Pr(windy = true 	| play = no) &= 3/5 \\
+			Pr(windy = false 	| play = no) &= 2/5
+		\end{align}
+
+
+		\begin{align}
+			Pr(outlook = sunny, temperature = cool, humidity = normal, windy = false | play = yes) = \\
+			Pr(play = yes) \cdot Pr(outlook = sunny | play = yes) \cdot Pr(temperature = hot 	| play = yes) \cdot \\
+			Pr(humidity = normal 	| play = yes) \cdot Pr(windy = false 	| play = yes) = \\
+			9/14 \cdot 2/9 \cdot 4/9 \cdot 6/9 \cdot 5/9 = 40/1701 = 0.02351557
+		\end{align}
+
+		\begin{align}
+			Pr(outlook = sunny, temperature = cool, humidity = normal, windy = false | play = no) = \\
+			Pr(play = no) \cdot Pr(outlook = sunny | play = no) \cdot Pr(temperature = hot 	| play = no) \cdot \\
+			Pr(humidity = normal 	| play = no) \cdot Pr(windy = false | play = no) =\\
+			 5/14 \cdot 3/5 \cdot 1/5 \cdot 1/5 \cdot  2/5 = 3/875 = 0.003428571
+		\end{align}
+
+
+		\begin{align}
+			Pr(outlook = overcast, temperature = mild, humidity = high, windy = true | play = yes) = \\
+			Pr(play = yes) \cdot Pr(outlook = overcast | play = yes) \cdot Pr(temperature = mild | play = yes) \cdot \\
+			Pr(humidity = high 	| play = yes) \cdot Pr(windy = true 	| play = yes) = \\
+			9/14 \cdot 2/9 \cdot 4/9 \cdot 3/9 \cdot 4/9 = 16/1701 = 0.00940623
+		\end{align}
+
+		\begin{align}
+			Pr(outlook = overcast, temperature = cool, humidity = high, windy = true | play = no) = \\
+			Pr(play = no) \cdot Pr(outlook = overcast | play = no) \cdot Pr(temperature = mild | play = no) \cdot \\
+			Pr(humidity = high 	| play = no) \cdot Pr(windy = true | play = no) =\\
+			5/14 \cdot 0/5 \cdot 2/5 \cdot 4/5 \cdot  4/5 = 0
 		\end{align}
 
 		\paragraph{}
