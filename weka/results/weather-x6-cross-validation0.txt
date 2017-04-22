@@ -1,6 +1,6 @@
 === Run information ===
 
-Scheme:       weka.classifiers.bayes.NaiveBayes
+Scheme:       weka.classifiers.bayes.NaiveBayesSimple
 Relation:     weather.symbolic
 Instances:    84
 Attributes:   5
@@ -13,33 +13,45 @@ Test mode:    10-fold cross-validation
 
 === Classifier model (full training set) ===
 
-Naive Bayes Classifier
+Naive Bayes (simple)
 
-                Class
-Attribute         yes     no
-               (0.64) (0.36)
-=============================
-outlook
-  sunny           13.0   19.0
-  overcast        25.0    1.0
-  rainy           19.0   13.0
-  [total]         57.0   33.0
+Class yes: P(C) = 0.63953488
 
-temperature
-  hot             13.0   13.0
-  mild            25.0   13.0
-  cool            19.0    7.0
-  [total]         57.0   33.0
+Attribute outlook
+sunny	overcast	rainy
+0.22807018	0.43859649	0.33333333
 
-humidity
-  high            19.0   25.0
-  normal          37.0    7.0
-  [total]         56.0   32.0
+Attribute temperature
+hot	mild	cool
+0.22807018	0.43859649	0.33333333
 
-windy
-  TRUE            19.0   19.0
-  FALSE           37.0   13.0
-  [total]         56.0   32.0
+Attribute humidity
+high	normal
+0.33928571	0.66071429
+
+Attribute windy
+TRUE	FALSE
+0.33928571	0.66071429
+
+
+
+Class no: P(C) = 0.36046512
+
+Attribute outlook
+sunny	overcast	rainy
+0.57575758	0.03030303	0.39393939
+
+Attribute temperature
+hot	mild	cool
+0.39393939	0.39393939	0.21212121
+
+Attribute humidity
+high	normal
+0.78125   	0.21875
+
+Attribute windy
+TRUE	FALSE
+0.59375   	0.40625
 
 
 
