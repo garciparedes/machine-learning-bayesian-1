@@ -33,22 +33,14 @@
 	\label{sec:e1}
 
 		\paragraph{}
-		[TODO]
+		Para resolver este problema de probabilidad condicionada se han definido las variables $X$ e $Y$ tal y como se muestra a continuación. Seguidamente se ha definido la probabilidad de los sucesos descritos en el enunciado del ejercicio. Mediante el teorema de bayes se ha obtenido la probabilidad del que una mujer de 40 años tenga cáncer realmente tras haberse realizado un examen rutinario.
+
+		\paragraph{}
+		Se ha obtenido una probabilidad del \textbf{$0.8\%$} de que tras haber dado positivo en el examen finalmente tenga cancer de mama.
 
 		\begin{align}
 			X &= \text{Tener Cancer de mama} 										&\rightarrow \{0,1\} \\
-			Y &= \text{Dar positivo al hacerse una mamografía} 	&\rightarrow \{0,1\} \\
-			Z &= \text{Ser una mujer de 40 años y someterse a examen rutinario}	&\rightarrow \{0,1\}
-		\end{align}
-
-		\begin{align}
-			Pr(Y = 1 | X = 1) = 0.800 \\
-			Pr(Y = 1 | X = 0) = 0.096 \\
-			Pr(X = 1 | Z = 1) = 0.010
- 		\end{align}
-
-		\begin{align}
-			Pr(X = 1 | Z = 1, Y = 1) = Pr(X = 1) \cdot Pr(Y = 1 | X = 1) \cdot Pr(Z = 1 | X = 1)
+			Y &= \text{Dar positivo al hacerse una mamografía} 	&\rightarrow \{0,1\}
 		\end{align}
 
 		\begin{align}
@@ -57,10 +49,12 @@
 			Pr(X = 1) = 0.010
 		\end{align}
 
-
 		\begin{align}
 			Pr(X = 1 | Y = 1) = Pr(X = 1) \cdot Pr(Y = 1 | X = 1) = 0.010 \cdot 0.800 = 0.008
 		\end{align}
+
+		\paragraph{}
+		Nótese que en el enunciado del ejercicio se habla de casos en los cuales las probabilidades son referidas a mujeres de 40 años mientras que hay otros casos en que se habla en general. Sin embargo esto no afecta al resultado del problema debido a la cuestión que se pregunta ya que se presupone que el suceso referido a todas las mujeres se da con la misma probabilidad en mujeres de 40 años.
 
 	\section{Dadas dos variables aleatorias discretas, $X$ e $Y$, y dada su distribución de probabilidad conjunta que aparece en la tabla, se pide:}
 	\label{sec:e2}
@@ -85,22 +79,37 @@
 		\subsection{¿Cumple la distribución conjunta las propiedades de una distribución de probabilidades?}
 
 			\paragraph{}
-			[TODO]
+			Si que cumple la distribución de probabilidad conjunta debido a que la suma de frecuencias de las variables $X$ e $Y$ da como resultado la unidad ($=1$). Esa es la restricción necesaria para que la tabla \ref{table:e2} se refiera a la distribución conjunta de frecuencias relativas.
 
 		\subsection{¿Cuál es la probabilidad de $Pr(X = x_1)$?}
 
 			\paragraph{}
-			[TODO]
+			La probabilidad que la variable $X$ tome el valor $x_1$ se puede obtener mediante el sumatorio de las frecuencias de la variable $Y$ condicionadas por $X = x_1$. Esto se muestra en la ecuación \eqref{eq:e2-2}
+
+			\begin{align}
+			\label{eq:e2-2}
+				\begin{split}
+				Pr(X = x_1) &= \sum_{i=1}^4fr(Y = y_i, X = x_1) \\
+										&= fr(Y = y_1, X = x_1) + fr(Y = y_2, X = x_1) + fr(Y = y_3, X = x_1)+ fr(Y = y_4, X = x_1) \\
+										&= 2/16 + 1/16 + 1/16 + 0 \\
+										&= 4/16
+					\end{split}
+			\end{align}
 
 		\subsection{¿Cuáles son las distribuciones marginales de $Pr(X = x)$ y $Pr(Y = y)$?}
 
 			\paragraph{}
-			[TODO]
+			Las distribuciones marginales de frecuencias relativas para las variables $X$ e $Y$ se muestran en la última fila y columna de la tabla \ref{table:e2} respectivamente. Dicha construcción se lleva a cabo de manera sencilla mediante la fórmula descrita en la ecuación \eqref{eq:sum_probability}.
+
+			\begin{equation}
+			\label{eq:sum_probability}
+				Pr(A = a_i) = \sum_{j}fr(B = b_j, X = a_i)
+			\end{equation}
 
 		\subsection{¿Verifican las distribuciones marginales las propiedades de una distribución de probabilidades?}
 
 			\paragraph{}
-			[TODO]
+			Las distribuciones marginales de las variables $X$ e $Y$ si que verifican las propiedades necesarias para ser condicionadas distribuciones de probabilidad debido a que la suma de ellas da como resultado la unidad ($\sum_{i}fr(A = a_i) = 1 $) para las dos variables. La razón de ello es que la tabla representa la distribución conjunta de frecuencias relativas de dichas variables.
 
 	\section{Utilizando el conjunto de datos \emph{weather-nominal-practica} que se proporciona, determinar la clasificación Naive Bayes de las siguientes instancias, utilizando la estimación de máxima verosimilitud (frecuencial)}
 	\label{sec:e3}
@@ -110,70 +119,74 @@
 			x_2 = <overcast, mild, high, true>
 		\end{align}
 
+		\paragraph{}
+		En este ejercicio se pide clasificar las instancias $x_1$ y $x_2$ utilizando el algoritmo \emph{Naive Bayes} de manera manual. Por lo tanto, para ello la primera tarea es calcular las distribuciones de probabilidad de los valores posibles para la clase de destino. A continuación es necesario calcular las probabilidades condicionadas del conjunto de valores que pueden tomar los atributos del conjunto de datos condicionados al valor de la clase. Para realizar dichas tareas se utiliza el conjunto de entrenamiento.
+
 		\begin{align}
 			Pr(play = yes) &= 9/14 \\
-			Pr(play = no) &= 5/14
-		\end{align}
-		\begin{align}
+			Pr(play = no) &= 5/14 \\
 			Pr(outlook = sunny 		| play = yes) &= 2/9 \\
 			Pr(outlook = overcast | play = yes) &= 2/9 \\
 			Pr(outlook = rainy 		| play = yes) &= 5/9 \\
 			Pr(outlook = sunny 		| play = no) &= 3/5 \\
 			Pr(outlook = overcast | play = no) &= 0/5 \\
-			Pr(outlook = rainy 		| play = no) &= 2/5
-		\end{align}
-
-		\begin{align}
+			Pr(outlook = rainy 		| play = no) &= 2/5 \\
 			Pr(temperature = hot 	| play = yes) &= 1/9 \\
 			Pr(temperature = mild | play = yes) &= 4/9 \\
 			Pr(temperature = cool | play = yes) &= 4/9 \\
 			Pr(temperature = hot 	| play = no) &= 2/5 \\
 			Pr(temperature = mild | play = no) &= 2/5 \\
-			Pr(temperature = cool | play = no) &= 1/5
-		\end{align}
-
-		\begin{align}
+			Pr(temperature = cool | play = no) &= 1/5 \\
 			Pr(humidity = high 		| play = yes) &= 3/9 \\
 			Pr(humidity = normal 	| play = yes) &= 6/9 \\
 			Pr(humidity = high		| play = no) &= 4/5 \\
-			Pr(humidity = normal 	| play = no) &= 1/5
+			Pr(humidity = normal 	| play = no) &= 1/5 \\
+			Pr(windy = true 			|	 play = yes) &= 4/9 \\
+			Pr(windy = false 			| play = yes) &= 5/9 \\
+			Pr(windy = true 			| play = no) &= 3/5 \\
+			Pr(windy = false 			| play = no) &= 2/5
+		\end{align}
+
+		\paragraph{}
+		El siguiente paso es calcular la probabilidad de que se den los valores de los atributos de cada instancia de manera conjunta en cada una de las clases para después clasificar la instancia en la clase que mayor probabilidad presente.
+
+		\begin{align}
+			\begin{split}
+				Pr(outlook = sunny, temperature = cool, humidity = normal, windy = false | play = yes) = \\
+				Pr(play = yes) \cdot Pr(outlook = sunny | play = yes) \cdot Pr(temperature = hot 	| play = yes) \cdot \\
+				Pr(humidity = normal 	| play = yes) \cdot Pr(windy = false 	| play = yes) = \\
+				9/14 \cdot 2/9 \cdot 4/9 \cdot 6/9 \cdot 5/9 = 40/1701 = 0.02351557
+			\end{split}
 		\end{align}
 
 		\begin{align}
-			Pr(windy = true 	| play = yes) &= 4/9 \\
-			Pr(windy = false 	| play = yes) &= 5/9 \\
-			Pr(windy = true 	| play = no) &= 3/5 \\
-			Pr(windy = false 	| play = no) &= 2/5
-		\end{align}
-
-
-		\begin{align}
-			Pr(outlook = sunny, temperature = cool, humidity = normal, windy = false | play = yes) = \\
-			Pr(play = yes) \cdot Pr(outlook = sunny | play = yes) \cdot Pr(temperature = hot 	| play = yes) \cdot \\
-			Pr(humidity = normal 	| play = yes) \cdot Pr(windy = false 	| play = yes) = \\
-			9/14 \cdot 2/9 \cdot 4/9 \cdot 6/9 \cdot 5/9 = 40/1701 = 0.02351557
-		\end{align}
-
-		\begin{align}
+			\begin{split}
 			Pr(outlook = sunny, temperature = cool, humidity = normal, windy = false | play = no) = \\
 			Pr(play = no) \cdot Pr(outlook = sunny | play = no) \cdot Pr(temperature = hot 	| play = no) \cdot \\
 			Pr(humidity = normal 	| play = no) \cdot Pr(windy = false | play = no) =\\
 			 5/14 \cdot 3/5 \cdot 1/5 \cdot 1/5 \cdot  2/5 = 3/875 = 0.003428571
+		 \end{split}
 		\end{align}
 
+		\paragraph{}
+		[TODO]
 
 		\begin{align}
-			Pr(outlook = overcast, temperature = mild, humidity = high, windy = true | play = yes) = \\
-			Pr(play = yes) \cdot Pr(outlook = overcast | play = yes) \cdot Pr(temperature = mild | play = yes) \cdot \\
-			Pr(humidity = high 	| play = yes) \cdot Pr(windy = true 	| play = yes) = \\
-			9/14 \cdot 2/9 \cdot 4/9 \cdot 3/9 \cdot 4/9 = 16/1701 = 0.00940623
+			\begin{split}
+				Pr(outlook = overcast, temperature = mild, humidity = high, windy = true | play = yes) = \\
+				Pr(play = yes) \cdot Pr(outlook = overcast | play = yes) \cdot Pr(temperature = mild | play = yes) \cdot \\
+				Pr(humidity = high 	| play = yes) \cdot Pr(windy = true 	| play = yes) = \\
+				9/14 \cdot 2/9 \cdot 4/9 \cdot 3/9 \cdot 4/9 = 16/1701 = 0.00940623
+			\end{split}
 		\end{align}
 
 		\begin{align}
-			Pr(outlook = overcast, temperature = cool, humidity = high, windy = true | play = no) = \\
-			Pr(play = no) \cdot Pr(outlook = overcast | play = no) \cdot Pr(temperature = mild | play = no) \cdot \\
-			Pr(humidity = high 	| play = no) \cdot Pr(windy = true | play = no) =\\
-			5/14 \cdot 0/5 \cdot 2/5 \cdot 4/5 \cdot  4/5 = 0
+			\begin{split}
+				Pr(outlook = overcast, temperature = cool, humidity = high, windy = true | play = no) = \\
+				Pr(play = no) \cdot Pr(outlook = overcast | play = no) \cdot Pr(temperature = mild | play = no) \cdot \\
+				Pr(humidity = high 	| play = no) \cdot Pr(windy = true | play = no) =\\
+				5/14 \cdot 0/5 \cdot 2/5 \cdot 4/5 \cdot  4/5 = 0
+			\end{split}
 		\end{align}
 
 		\paragraph{}
@@ -183,7 +196,21 @@
 	\label{sec:e4}
 
 		\paragraph{}
-		[TODO]
+		Los resultados obtenidos al clasificar las instancias $x_1$ y $x_2$ del ejercicio anterior mediante Weka se mestran en la tabla \ref{table:e4}. Dichos resultados son equivalente a los calculados de manera manual. La razón de ello es que el algoritmo seguido ha sido el mismo.
+
+		\begin{table}[H]
+			\centering
+			\begin{tabu}{ | c | c | }
+				\hline
+				\multicolumn{2}{ | c | }{Naive Bayes} \\ \hline
+				Instancia	& Clase \\ \hline
+				$<sunny, cool, normal, false>$	& $yes$	\\ \hline
+				$<overcast, mild, high, true>$	& $yes$	\\
+				\hline
+			\end{tabu}
+			\caption{Clasificación obtenida mediante WEKA}
+			\label{table:e4}
+		\end{table}
 
 	\section{Entrenar con Weka, un clasificador Naive Bayes para el conjunto de datos \emph{weather-nominal}}
 	\label{sec:e5}
@@ -191,12 +218,28 @@
 		\subsection{Estimar la tasa de error cometida por el clasificador utilizando validación cruzada de 10 particiones}
 
 			\paragraph{}
-			[TODO]
+			En la tabla \ref{table:e5} se muetra la tasa de erro cometida tras realizar un experimento de validación cruzada de 10 particiones sobre el conjunto de datos \emph{weather-nominal}.
+
+			\begin{table}[H]
+				\centering
+				\begin{tabu}{ | c | c | }
+					\hline
+					\multicolumn{2}{ | c | }{Naive Bayes} \\ \hline
+					Datos	& Tasa de Error \\ \hline
+					Weather Nominal	& $42.8571\%$	\\
+					\hline
+				\end{tabu}
+				\caption{Validación Cruzada de 10 particiones con Naive Bayes}
+				\label{table:e5}
+			\end{table}
 
 		\subsection{Examinar la salida proporcionada por el Explorer y determinar cómo está estimando esta implementación de \emph{Naive Bayes} los parámetros del clasificador}
 
 			\paragraph{}
-			[TODO]
+			El algoritmo \emph{Naive Bayes Simple} implementado en Weka funciona de la misma manera que la implementación manual realizada en este documento. Primero se calcula la probabilidad a priori de cada uno de los valores que puede tomar la clase de destino sobre el conjunto de datos de entrenamiento. Seguidamente calcula las probabilidades condicionadas de cada uno de los valores de los atributos del conjunto de datos respecto de las distintas clases de destino.
+
+			\paragraph{}
+			Para clasificar las instancias supone independencia entre atributos y calcula la probabilidad conjunta de todos los atributos de la instancia condicionada a las distintas clases para despues clasificar dicha instancia en la clase que maximice el valor de probabilidad de la misma.
 
 	\section{El conjunto de datos \emph{weather-nominal-X6} se ha generado repitiendo cada instancia del conjunto \emph{weather-nominal} seis veces. Entrenar con Weka un clasificador Naive Bayes para este conjunto de datos:}
 	\label{sec:e6}
@@ -204,12 +247,30 @@
 		\subsection{Estimar la tasa de error cometida por el clasificador utilizando validación cruzada de 10 particiones}
 
 			\paragraph{}
-			[TODO]
+			En la tabla \ref{table:e6} se muetra la tasa de erro cometida tras realizar un experimento de validación cruzada de 10 particiones sobre el conjunto de datos \emph{weather-nominal-X6}.
+
+			\begin{table}[H]
+				\centering
+				\begin{tabu}{ | c | c | }
+					\hline
+					\multicolumn{2}{ | c | }{Naive Bayes} \\ \hline
+					Datos	& Tasa de Error \\ \hline
+					Weather Nominal x6		& $9.5238\%$	\\
+					\hline
+				\end{tabu}
+				\caption{Validación Cruzada de 10 particiones con Naive Bayes}
+				\label{table:e6}
+			\end{table}
 
 		\subsection{Compare esta tasa de error con la estimada en el ejercicio anterior y discuta los resultados}
 
 			\paragraph{}
-			[TODO]
+			Los resultados de los experimentos realizados sobre los dos conjuntos de datos se muestran en las tablas \ref{table:e5} y \ref{table:e6}. A pesar de corresponderse con el mismo conjunto de datos (solo que con instancias duplicadas 6 veces en el caso del último) los resultados obtenidos presentan una gran diferencia en cuanto a la tasa de error.
+
+			\paragraph{}
+			La razón por la cual ha sucedido este fenómeno se puede deber al tamaño tan reducido del conjunto de datos referido tan solo a $14$ instancias en el caso en que no se repiten, y al tipo de experimento realizado, que divide dicho conjunto en 10 particiones. Esto hace que en algunos casos de test no haya instancias que añadan probabilidad a algunos de los posibles casos, lo cual se deriva en probabilidad nula durante la clasificación, lo que produce un error. Dicho fenómeno es más difícil que suceda cuando se presentan 6 veces más instancias ($84$ instancias) por lo que los resultados son mejores.
+
+
 %-----------------------------
 %	Bibliographic references
 %-----------------------------
