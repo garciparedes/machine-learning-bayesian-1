@@ -21,7 +21,7 @@
 %-----------------------------
 
 	\begin{abstract}
-		\noindent [TODO ]
+		\noindent En este documento se resuelven distintos ejercicios relacionados con el \emph{Teorema de Bayes}, todos ellos desde una perspectiva práctica relacionada con el aprendizaje automático. Además, se realiza una clasificación manual basada en el algoritmo \emph{Naive Bayes} \cite{john1995estimating}. Las 3 últimas secciones se corresponden con la realización de experimentos sobre distintas variaciones del conjunto de datos \emph{weather-nominal} \cite{dataset:weather} y \emph{Naive Bayes} para después discutir los resultados.
 	\end{abstract}
 
 %-----------------------------
@@ -122,7 +122,7 @@
 		\paragraph{}
 		En este ejercicio se pide clasificar las instancias $x_1$ y $x_2$ utilizando el algoritmo \emph{Naive Bayes} de manera manual. Por lo tanto, para ello la primera tarea es calcular las distribuciones de probabilidad de los valores posibles para la clase de destino. A continuación es necesario calcular las probabilidades condicionadas del conjunto de valores que pueden tomar los atributos del conjunto de datos condicionados al valor de la clase. Para realizar dichas tareas se utiliza el conjunto de entrenamiento.
 
-		\begin{align}
+		\begin{align*}
 			Pr(play = yes) &= 9/14 \\
 			Pr(play = no) &= 5/14 \\
 			Pr(outlook = sunny 		| play = yes) &= 2/9 \\
@@ -145,12 +145,13 @@
 			Pr(windy = false 			| play = yes) &= 5/9 \\
 			Pr(windy = true 			| play = no) &= 3/5 \\
 			Pr(windy = false 			| play = no) &= 2/5
-		\end{align}
+		\end{align*}
 
 		\paragraph{}
-		El siguiente paso es calcular la probabilidad de que se den los valores de los atributos de cada instancia de manera conjunta en cada una de las clases para después clasificar la instancia en la clase que mayor probabilidad presente.
+		El siguiente paso es calcular la probabilidad de que se den los valores de los atributos de cada instancia de manera conjunta en cada una de las clases para después clasificar la instancia en la clase que mayor probabilidad presente. Los resultados se muestran en la tabla \ref{table:e3}.
 
 		\begin{align}
+		\label{eq:x1_probability_yes}
 			\begin{split}
 				Pr(outlook = sunny, temperature = cool, humidity = normal, windy = false | play = yes) = \\
 				Pr(play = yes) \cdot Pr(outlook = sunny | play = yes) \cdot Pr(temperature = hot 	| play = yes) \cdot \\
@@ -160,6 +161,7 @@
 		\end{align}
 
 		\begin{align}
+		\label{eq:x1_probability_no}
 			\begin{split}
 			Pr(outlook = sunny, temperature = cool, humidity = normal, windy = false | play = no) = \\
 			Pr(play = no) \cdot Pr(outlook = sunny | play = no) \cdot Pr(temperature = hot 	| play = no) \cdot \\
@@ -169,9 +171,10 @@
 		\end{align}
 
 		\paragraph{}
-		[TODO]
+		En las ecuaciones \eqref{eq:x1_probability_yes} y \eqref{eq:x1_probability_no} se calculan las probabilidades de pertenencia a las correspondientes clases para la instancia $x_1$. Nótese que se omite el denominador, la razón de ello se debe a que no se pretende conocer la probabilidad exacta de que la instancia pertenezca a dicha clase, sino utilizarlo como punto de comparación respecto del resto de clases. Dado que dicho denominador es constante para todos los cálculos entonces se puede omitir. Tal y como lleva a cabo el algortimo \emph{Naive Bayes}, la clase en la cual se debe etiquetar la instancia es la que maximice dichos cálculos, por tanto \textbf{$x_1$ se clasifica como yes}.
 
 		\begin{align}
+		\label{eq:x2_probability_yes}
 			\begin{split}
 				Pr(outlook = overcast, temperature = mild, humidity = high, windy = true | play = yes) = \\
 				Pr(play = yes) \cdot Pr(outlook = overcast | play = yes) \cdot Pr(temperature = mild | play = yes) \cdot \\
@@ -181,6 +184,7 @@
 		\end{align}
 
 		\begin{align}
+		\label{eq:x2_probability_no}
 			\begin{split}
 				Pr(outlook = overcast, temperature = cool, humidity = high, windy = true | play = no) = \\
 				Pr(play = no) \cdot Pr(outlook = overcast | play = no) \cdot Pr(temperature = mild | play = no) \cdot \\
@@ -190,7 +194,21 @@
 		\end{align}
 
 		\paragraph{}
-		[TODO]
+		En las ecuaciones \eqref{eq:x1_probability_yes} y \eqref{eq:x1_probability_no} se calculan las probabilidades de pertenencia a las correspondientes clases para la instancia $x_2$. Al igual que en el caso anterior, no es necesario calcular el denominador de la igualdad del \emph{Teorema de Bayes}. Tal y como lleva a cabo el algortimo \emph{Naive Bayes}, la clase en la cual se debe etiquetar la instancia es la que maximice dichos cálculos, por tanto \textbf{$x_2$ se clasifica como yes}.
+
+		\begin{table}[H]
+			\centering
+			\begin{tabu}{ | c | c | }
+				\hline
+				\multicolumn{2}{ | c | }{Naive Bayes - Manual} \\ \hline
+				Instancia	& Clase \\ \hline
+				$<sunny, cool, normal, false>$	& $yes$	\\ \hline
+				$<overcast, mild, high, true>$	& $yes$	\\
+				\hline
+			\end{tabu}
+			\caption{Clasificación obtenida de manera manual}
+			\label{table:e3}
+		\end{table}
 
 	\section{Utilizando Weka y el clasificador NaiveBayes determinar la clasificación de los ejemplos anteriores, ¿Coindice con la clasificación calculada en el ejercicio anterior?}
 	\label{sec:e4}
@@ -202,7 +220,7 @@
 			\centering
 			\begin{tabu}{ | c | c | }
 				\hline
-				\multicolumn{2}{ | c | }{Naive Bayes} \\ \hline
+				\multicolumn{2}{ | c | }{Naive Bayes - Weka} \\ \hline
 				Instancia	& Clase \\ \hline
 				$<sunny, cool, normal, false>$	& $yes$	\\ \hline
 				$<overcast, mild, high, true>$	& $yes$	\\
@@ -224,7 +242,7 @@
 				\centering
 				\begin{tabu}{ | c | c | }
 					\hline
-					\multicolumn{2}{ | c | }{Naive Bayes} \\ \hline
+					\multicolumn{2}{ | c | }{Naive Bayes - Weka} \\ \hline
 					Datos	& Tasa de Error \\ \hline
 					Weather Nominal	& $42.8571\%$	\\
 					\hline
@@ -253,7 +271,7 @@
 				\centering
 				\begin{tabu}{ | c | c | }
 					\hline
-					\multicolumn{2}{ | c | }{Naive Bayes} \\ \hline
+					\multicolumn{2}{ | c | }{Naive Bayes - Weka} \\ \hline
 					Datos	& Tasa de Error \\ \hline
 					Weather Nominal x6		& $9.5238\%$	\\
 					\hline
