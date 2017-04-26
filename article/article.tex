@@ -214,7 +214,12 @@
 	\label{sec:e4}
 
 		\paragraph{}
-		Los resultados obtenidos al clasificar las instancias $x_1$ y $x_2$ del ejercicio anterior mediante Weka se mestran en la tabla \ref{table:e4}. Dichos resultados son equivalente a los calculados de manera manual. La razón de ello es que el algoritmo seguido ha sido el mismo.
+		Los resultados obtenidos al clasificar las instancias $x_1$ y $x_2$ del ejercicio anterior mediante Weka se mestran en la tabla \ref{table:e4}. Dichos resultados son equivalente a los calculados de manera manual. Sin embargo, podría no haber sido así debido a que la implementación de \emph{Naive Bayes} en \emph{Weka} utiliza la estimación Bayesiana (m-estima), la cual se muestra en la ecuación \eqref{eq:naive_bayes_smoothing} donde $n_c$ representa el número de ejemplos de entrenamiento con la clase $b_j$, $n$ el número de ejemplos de la de entrenamiento con la clase $b_j$, y el atributo $a_i$, $p = Pr(A = a_i | B = b_j)$, es decir, la estimación a priori y $m$ un determinado peso para la estimación a priori. A partir de dicha estrategia se tratan los casos con probabilidad nula, que provocan que la probabilidad al aplicar el \emph{Teorema de Bayes} sobre nuevas instancias sea nula, y por tanto, las instancias no se etiqueten en dicha clase debido a un único atributo con probabilidad 0 ($Pr(A = a_i | B = b_j)=0$). La estimación mediante la ecuación \eqref{eq:naive_bayes_smoothing} resuelve esta problemática.
+
+		\begin{equation}
+		\label{eq:naive_bayes_smoothing}
+		 Pr'(A = a_i | B = b_j) = \frac{n_c + mp}{n + m}
+		\end{equation}
 
 		\begin{table}[H]
 			\centering
